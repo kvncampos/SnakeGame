@@ -4,6 +4,7 @@ import random
 
 class Food(Turtle):
     """Food Class with Turtle Properties"""
+
     def __init__(self):
         super().__init__()
         self.shape("circle")

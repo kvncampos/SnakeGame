@@ -1,4 +1,4 @@
-from turtle import Turtle
+from turtle import Turtle, Screen
 
 STARTING_POSITIONS = [(0, 0), (-20, 0), (-40, 0)]
 MOVE_FORWARD = 20
@@ -20,11 +20,18 @@ class Snake:
     def create_snake(self):
         """Creates new snake"""
         for position in STARTING_POSITIONS:
-            new_block = Turtle("square")
-            new_block.color("white")
-            new_block.penup()
-            new_block.goto(position)
-            self.snake_blocks.append(new_block)
+            self.add_segment(position)
+
+    def add_segment(self, position):
+        """Creates new snake"""
+        new_segment = Turtle("square")
+        new_segment.color("white")
+        new_segment.penup()
+        new_segment.goto(position)
+        self.snake_blocks.append(new_segment)
+
+    def extend(self):
+        self.add_segment(self.snake_blocks[-1].position())
 
     def move(self):
         """Defines the movement of the snake by moving last block"""
@@ -49,3 +56,13 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+    def wall_collision(self):
+        """checks for wall collisions """
+        if self.head.xcor() > 280 or self.head.xcor() < -280 or self.head.ycor() > 280 or self.head.ycor() < -280:
+            wall = Turtle()
+            wall.hideturtle()
+            wall.color("White")
+            return True
+
+
