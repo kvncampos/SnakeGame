@@ -41,6 +41,9 @@ while game_is_on:
     screen.update()
     time.sleep(0.1)
     snake.move()
+    
+    # Fetch the HighScore Data from high_score.json
+    fetch_high_score(username, score)
 
     # Detect collision with Food.
     if snake.head.distance(food) < 15:
@@ -60,8 +63,6 @@ while game_is_on:
             game_is_on = False
             scoreboard.game_over()
 
-# Fetch the HighScore Data from high_score.json
-fetch_high_score(username, score)
 
 screen.exitonclick()
 

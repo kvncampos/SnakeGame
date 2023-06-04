@@ -56,4 +56,4 @@ class HighScore(Turtle):
         except KeyError:
             print("Invalid JSON file format.")
 
-        self.write(f"Current HighScore: {self.high_score} by {self.username}", False, align="right", font=FONT)
+        self.write(f"Current HighScore: {self.high_score} set by {self.username}", False, align="right", font=FONT)
