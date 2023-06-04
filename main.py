@@ -6,6 +6,7 @@ from food import Food
 from scoreboard import Scoreboard, HighScore
 import tkinter as tk
 from tkinter import simpledialog
+from json_logic import fetch_high_score
 
 root = tk.Tk()
 root.withdraw()
@@ -58,18 +59,9 @@ while game_is_on:
         if snake.head.distance(block) < 10:
             game_is_on = False
             scoreboard.game_over()
-            
-# Read high scores from the file
-with open("high_score.json", 'r') as f:
-    high_score_data = json.load(f)
 
-# Update the high score and username if the new score is higher
-if score > high_score_data["current_high_score"]:
-    high_score_data["current_high_score"] = score
-    high_score_data["username"] = username
-
-    # Write the updated data back to the file
-    with open("high_score.json", 'w') as f:
-        json.dump(high_score_data, f)
+# Fetch the HighScore Data from high_score.json
+fetch_high_score(username, score)
 
 screen.exitonclick()
+
